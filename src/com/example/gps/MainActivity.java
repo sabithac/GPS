@@ -9,6 +9,7 @@ import android.location.LocationManager;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
  @SuppressLint("NewApi") public class MainActivity extends ActionBarActivity implements LocationListener{
 
@@ -41,25 +42,27 @@ import android.view.MenuItem;
     }
 
 	@Override
-	public void onLocationChanged(Location arg0) {
+	public void onLocationChanged(Location location) {
 		// TODO Auto-generated method stub
+		 String str = "Latitude: "+location.getLatitude()+"Longitude: "+location.getLongitude();
+		 Toast.makeText(getBaseContext(), str, Toast.LENGTH_LONG).show();
+	}
+
+	@Override
+	public void onProviderDisabled(String provider) {
+		// TODO Auto-generated method stub
+		Toast.makeText(getBaseContext(), "Gps turned off ", Toast.LENGTH_LONG).show();
 		
 	}
 
 	@Override
-	public void onProviderDisabled(String arg0) {
+	public void onProviderEnabled(String provider) {
 		// TODO Auto-generated method stub
-		
+		Toast.makeText(getBaseContext(), "Gps turned on ", Toast.LENGTH_LONG).show();
 	}
 
 	@Override
-	public void onProviderEnabled(String arg0) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void onStatusChanged(String arg0, int arg1, Bundle arg2) {
+	public void onStatusChanged(String arg0, int status, Bundle extras) {
 		// TODO Auto-generated method stub
 		
 	}
